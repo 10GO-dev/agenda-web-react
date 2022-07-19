@@ -1,0 +1,23 @@
+
+#filter {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 16px;
+    width: 300px;
+    background-image: url("/src/Assets/Images/search-icon.png");
+    background-repeat: no-repeat;
+    padding: 10px 10px 12px 40px;
+    background-position: 5px 5px;
+    margin: 0;
+    border-radius: 5px;
+}
+
+#filter::placeholder {
+    color: rgba(255, 255, 255, 0.686);
+}
+
+#filter:focus {
+    outline: none;
+    border: 1.5px solid #fff;
+}

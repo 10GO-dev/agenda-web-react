@@ -1,0 +1,95 @@
+/***** contactForm *****/
+
+.contact-form-div {
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-top: 200px;
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 370px;
+    height: auto;
+    border-radius: 20px;
+}
+
+.form-header {
+    display: grid;
+    grid-template-columns: [first] 90% [second] 10%;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.form-title {
+    padding-left: 40px;
+}
+
+.contact-form {
+    text-align: left;
+    position: relative;
+    max-width: 300px;
+    padding-top: 16px;
+    color: #fff;
+    letter-spacing: 2px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.btnGuardar {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    opacity: 0.9;
+    border-radius: 20px;
+    margin: 0 35% 
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+
+.overlay-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type=text],
+input[type=tel] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    border-radius: 20px;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus,
+input[type=tel]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.btnClose {
+    align-self: start;
+    background-color: #da0c0c;
+    border: none;
+    height: 30px;
+    width: 30px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 50%;
+}
