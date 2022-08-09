@@ -1,14 +1,9 @@
-import React, { useState} from "react";
+import React from "react";
 import "./contactForm.css";
-import "../../Services/agendaAPI.js";
-import agendaAPI from "../../Services/agendaAPI.js";
+import { addContact } from "../../Services/agendaAPI.js";
 
 const contactForm = ({setIsShowForm}) => {
-  const [formState, setFormState] = useState({
-    name: "",
-    lastName: "",
-    telephone: "",
-  });
+ 
 
   const handleClick = () => {
     setIsShowForm(false);
@@ -22,15 +17,10 @@ const contactForm = ({setIsShowForm}) => {
       apellido: e.currentTarget.lastName.value,
       telefono: e.currentTarget.telephone.value,
     };
-    const Database = agendaAPI.fireStore();
-    Database.collection('contactos').add(data)
-    .then( res => {
+
+    addContact(data)
+    .then( (res) => {
       console.log(res)
-      setFormState({
-        name: "",
-        apellido: "",
-        telefono: "",
-      })
       alert("Contacto agregado exitosamente")
       setIsShowForm(false);
     });
@@ -57,7 +47,6 @@ const contactForm = ({setIsShowForm}) => {
                 id="nombre"
                 type="text"
                 name="name"
-                placeholder="Ingresa el nombre"
                 onChange={handleChange}
                 required
               />
@@ -69,9 +58,7 @@ const contactForm = ({setIsShowForm}) => {
                 id="apellido"
                 type="text"
                 name="lastName"
-                placeholder="Ingresa el apellido"
                 onChange={handleChange}
-                value={formState.lastName}
                 required
               />
             </label>
@@ -81,11 +68,9 @@ const contactForm = ({setIsShowForm}) => {
               <input
                 id="telefono"
                 type="tel"
-                placeholder="Ingresa el número"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                //pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 name="telephone"
                 onChange={handleChange}
-                value={formState.telephone}
                 required
               />
             </label>

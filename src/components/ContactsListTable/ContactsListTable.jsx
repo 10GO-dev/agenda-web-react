@@ -1,24 +1,15 @@
 import "./ContactsListTable.css";
 import React, { useState, useEffect } from "react";
-import agendaAPI from "../../Services/agendaAPI";
+import {getContacts} from "../../Services/agendaAPI";
 import ContactItem from "./ContactItem";
 
 const ContactList = () => {
   const [data, setData] = useState([]);
 
   const loadData = async () => {
-    try {
-      const Database = agendaAPI.fireStore()
-      Database.collection('contactos')
-      .get()
-      .then( response => {
-        setData(response);
-      })
-    } catch (e) {
-      throw new Error(e);
-    }
-  };
-
+    const datos = await getContacts();
+    setData(datos)
+  }
   useEffect(() => {
     loadData();
   }, []);
