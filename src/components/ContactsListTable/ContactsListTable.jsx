@@ -1,17 +1,19 @@
 import "./ContactsListTable.css";
 import React, { useState, useEffect } from "react";
-import "../../Services/agendaAPI";
+import agendaAPI from "../../Services/agendaAPI";
 import ContactItem from "./ContactItem";
 
 const ContactList = () => {
   const [data, setData] = useState([]);
-  const ENDPOINT_URL = "http://www.raydelto.org/agenda.php";
 
   const loadData = async () => {
     try {
-      const data = await fetch(ENDPOINT_URL);
-      const response = await data.json();
-      setData(response);
+      const Database = agendaAPI.fireStore()
+      Database.collection('contactos')
+      .get()
+      .then( response => {
+        setData(response);
+      })
     } catch (e) {
       throw new Error(e);
     }

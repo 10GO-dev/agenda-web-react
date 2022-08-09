@@ -2,7 +2,7 @@ import "./Assets/Styles/App.css";
 import SearchBox from "./components/SearchBox/SearchBox.jsx";
 import ContactsForm from "./components/ContactForm/ContactForm.jsx";
 import ContactsLists from "./components/ContactsListTable/ContactsListTable.jsx";
-import { useState } from "react";
+import { React, useState } from "react";
 
 function App() {
   const [isShowForm, setIsShowForm] = useState(false);
@@ -11,6 +11,7 @@ function App() {
     e.preventDefault();
     setIsShowForm((isShowForm) => !isShowForm);
   };
+  
   return (
     <div className="App">
       <section className={`${isShowForm ? "blur":""}`}>

@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState} from "react";
 import "./contactForm.css";
-import { saveContact } from "../../Services/agendaAPI.js";
+import "../../Services/agendaAPI.js";
+import agendaAPI from "../../Services/agendaAPI.js";
 
 const contactForm = ({setIsShowForm}) => {
   const [formState, setFormState] = useState({
@@ -21,10 +22,10 @@ const contactForm = ({setIsShowForm}) => {
       apellido: e.currentTarget.lastName.value,
       telefono: e.currentTarget.telephone.value,
     };
-
-    const contact = await saveContact(data);
-    
-    if (contact.exito){
+    const Database = agendaAPI.fireStore();
+    Database.collection('contactos').add(data)
+    .then( res => {
+      console.log(res)
       setFormState({
         name: "",
         apellido: "",
@@ -32,7 +33,7 @@ const contactForm = ({setIsShowForm}) => {
       })
       alert("Contacto agregado exitosamente")
       setIsShowForm(false);
-    }
+    });
   };
 
   const handleChange = (e) => {
@@ -70,7 +71,7 @@ const contactForm = ({setIsShowForm}) => {
                 name="lastName"
                 placeholder="Ingresa el apellido"
                 onChange={handleChange}
-                // value={formState.lastName}
+                value={formState.lastName}
                 required
               />
             </label>
@@ -81,10 +82,10 @@ const contactForm = ({setIsShowForm}) => {
                 id="telefono"
                 type="tel"
                 placeholder="Ingresa el número"
-                //pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 name="telephone"
                 onChange={handleChange}
-                // value={formState.telephone}
+                value={formState.telephone}
                 required
               />
             </label>
